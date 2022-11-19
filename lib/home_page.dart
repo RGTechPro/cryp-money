@@ -1,3 +1,4 @@
+import 'package:cryptapp/portfolio.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'news_screen.dart';
@@ -10,7 +11,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-  final _pageOptions = [HomeScreen(), NewsScreen(), SettingsScreen()];
+  final _pageOptions = [
+    HomeScreen(),
+    NewsScreen(),
+    Portfolio(),
+    SettingsScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +46,8 @@ class _HomePageState extends State<HomePage> {
                 Icons.wysiwyg_rounded,
               ),
               label: 'News'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.bar_chart_rounded), label: 'Portfolio'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings,

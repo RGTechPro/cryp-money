@@ -31,18 +31,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: SettingsList(
         sections: [
           SettingsSection(
-            title: 'Basics',
+            title: Text('Basics'),
             tiles: [
               SettingsTile(
-                title: 'Language',
-                subtitle: 'English',
+                title: Text('Language'),
+               
                 leading: Icon(Icons.language),
                 onPressed: (BuildContext context) {},
               ),
               SettingsTile.switchTile(
-                title: 'Show More Data',
+                title: Text('Show More Data'),
                 leading: Icon(Icons.show_chart),
-                switchValue: a,
+                initialValue: a,
                 onToggle: (value) {
                   setState(() {
                     a = value;
@@ -52,12 +52,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
           SettingsSection(
-            title: 'Notifications',
+            title: Text('Notifications'),
             tiles: [
               SettingsTile.switchTile(
-                title: 'New News Notification',
+                title: Text('New News Notification'),
                 leading: Icon(Icons.dehaze),
-                switchValue: b,
+                initialValue: b,
                 onToggle: (bool value) {
                   setState(() {
                     b = value;
@@ -65,9 +65,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
               SettingsTile.switchTile(
-                title: 'Push Notifications',
+                title: Text('Push Notifications'),
                 leading: Icon(Icons.circle_notifications),
-                switchValue: c,
+                initialValue: c,
                 onToggle: (bool value) {
                   setState(() {
                     setState(() {
@@ -77,9 +77,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
               SettingsTile.switchTile(
-                title: 'Notification Vibration',
+                title: Text('Notification Vibration'),
                 leading: Icon(Icons.vibration),
-                switchValue: d,
+                initialValue: d,
                 onToggle: (bool value) {
                   setState(() {
                     d = value;
@@ -89,13 +89,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
           SettingsSection(
-            title: 'Misc',
+            title: Text('Misc'),
             tiles: [
               SettingsTile(
                   onPressed: (context) {
                     _launchURL();
                   },
-                  title: 'Privacy Policy',
+                  title: Text('Privacy Policy'),
                   leading: Icon(Icons.description)),
             ],
           ),

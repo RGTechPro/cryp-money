@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     performsFirstActionWithFullSwipe: true,
                     trailingActions: <SwipeAction>[
                       SwipeAction(
-                          title: "Add to Favorites",
+                          title: "Add to Portfolio",
                           onTap: (CompletionHandler handler) async {
                             __addToFavourites(_marketData[index].id!);
                           },

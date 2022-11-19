@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "526178613363",
+    "project_id": "cryp-money",
+    "storage_bucket": "cryp-money.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526178613363:android:fffb9e7f105851fca71206",
+        "android_client_info": {
+          "package_name": "com.crippy.cryptapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526178613363-tlv58etle3qnmick117p7o6pfnloq40m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.crippy.cryptapp",
+            "certificate_hash": "7ba0925b6b8ed8286dc77bd1a855d631998a6f54"
+          }
+        },
+        {
+          "client_id": "526178613363-i16j6gietggjaosjvclsbb9oo1uidti2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbgcnq1ephVV31voTqLu5uUfX_kuqcOzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526178613363-i16j6gietggjaosjvclsbb9oo1uidti2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
