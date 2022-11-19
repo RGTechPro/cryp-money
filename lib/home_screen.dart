@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cryptapp/crypto_detail.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     futureGeckoMarket = getGeckoMarket();
   }
 
+  TextEditingController _textFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,6 +79,51 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ],
     ));
+  }
+
+  String? codeDialog;
+  String? valueText;
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Enter quantity to add to portfolio'),
+            content: TextField(
+              onChanged: (value) {
+                setState(() {
+                  valueText = value;
+                });
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Quantity"),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                child: Text('CANCEL'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                color: Colors.green,
+                textColor: Colors.white,
+                child: Text('ADD'),
+                onPressed: () {
+                  setState(() {
+                    codeDialog = valueText;
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+            ],
+          );
+        });
   }
 
   void _onSearchValueChange(String q) {
@@ -136,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SwipeAction(
                           title: "Add to Portfolio",
                           onTap: (CompletionHandler handler) async {
-                            __addToFavourites(_marketData[index].id!);
+                            __addToPortfolio(_marketData[index]);
                           },
                           color: Colors.green),
                     ],
@@ -157,8 +205,19 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void __addToFavourites(String id){
+  void __addToPortfolio(GeckoMarket cryp) async {
     print("Coming soon");
+
+    await _displayTextInputDialog(context);
+    print(codeDialog);
+    CollectionReference portfolio =
+        FirebaseFirestore.instance.collection('portfolio');
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    portfolio
+        .doc(uid)
+        .set({cryp.name: codeDialog})
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 }
 
@@ -179,10 +238,9 @@ class CryptoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var tArrow;
-    if(change>0){
+    if (change > 0) {
       tArrow = upArrow();
-    }
-    else{
+    } else {
       tArrow = downArrow();
     }
     return Padding(
