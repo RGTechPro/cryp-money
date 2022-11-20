@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cryptapp/crypto_detail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-
 import 'network/coin_geckp_api.dart';
 import 'pojo/gecko_market.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))),
                 Expanded(
                   flex: 8,
-                  child: TextField(
+                  child: TextField( 
                       textInputAction: TextInputAction.search,
                       onSubmitted: (value) => _onSearchValueChange(value),
                       onChanged: (value) => _onSearchValueChange(value),
@@ -90,7 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) {
           return AlertDialog(
             title: Text('Enter quantity to add to portfolio'),
-            content: TextField(
+            content: TextField(keyboardType: TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: <TextInputFormatter>[
+   FilteringTextInputFormatter.allow(RegExp(r"[0-9.]"))
+],
               onChanged: (value) {
                 setState(() {
                   valueText = value;
@@ -215,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     portfolio
         .doc(uid)
-        .set({cryp.name: codeDialog})
+        .update({cryp.name!: codeDialog!})
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
