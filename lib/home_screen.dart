@@ -216,9 +216,10 @@ class _HomeScreenState extends State<HomeScreen> {
     CollectionReference portfolio =
         FirebaseFirestore.instance.collection('portfolio');
     String uid = FirebaseAuth.instance.currentUser!.uid;
+  //  if()
     portfolio
         .doc(uid)
-        .update({cryp.name!: codeDialog!})
+        .set({cryp.name!: codeDialog!},SetOptions(merge: true))
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
          final snackBar = new SnackBar(content: new Text('Added successfully!'),                                                         
