@@ -1,3 +1,5 @@
+import 'package:cryptapp/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -35,7 +37,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             tiles: [
               SettingsTile(
                 title: Text('Language'),
-               
                 leading: Icon(Icons.language),
                 onPressed: (BuildContext context) {},
               ),
@@ -97,10 +98,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   },
                   title: Text('Privacy Policy'),
                   leading: Icon(Icons.description)),
+              SettingsTile(
+                  onPressed: (context) {
+                    _signOut();
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        final snackBar = new SnackBar(content: new Text('Signed out!'),                                                         
+  backgroundColor: Colors.red);                                                                                      
+                                       
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);     
+                  },
+                  title: Text('Logout'),
+                  leading: Icon(Icons.logout)),
             ],
           ),
         ],
       ),
     );
   }
+}
+
+Future<void> _signOut() async {
+  await FirebaseAuth.instance.signOut();
 }

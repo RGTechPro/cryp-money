@@ -97,6 +97,10 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 setState(() {
                   _isSigningIn = false;
                 });
+                 final snackBar = new SnackBar(content: new Text('Signed in!'),                                                         
+  backgroundColor: Colors.red);                                                                                      
+                                       
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);   
               },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),

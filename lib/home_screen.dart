@@ -221,6 +221,10 @@ class _HomeScreenState extends State<HomeScreen> {
         .update({cryp.name!: codeDialog!})
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
+         final snackBar = new SnackBar(content: new Text('Added successfully!'),                                                         
+  backgroundColor: Colors.red);                                                                                      
+                                       
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);   
   }
 }
 

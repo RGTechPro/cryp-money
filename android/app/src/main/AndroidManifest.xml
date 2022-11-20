@@ -8,7 +8,7 @@
       </intent>
     </queries>
    <application
-        android:label="Crippy"
+        android:label="CrypMoney"
         android:icon="@mipmap/ic_launcher">
         <activity
           android:exported="true"
