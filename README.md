@@ -10,3 +10,4 @@ Coming on to the technical part, we have bulit Crypmoney on Flutter thus ensurin
 app runs on every device platform with light requirements. For backend, Google’s Firebase
 has been used. All the database is stored in Firebase’s Cloud firestore. For tracking the
 price, the app uses Coingecko’s API.
+Authors - Dhruv, Rishabh
